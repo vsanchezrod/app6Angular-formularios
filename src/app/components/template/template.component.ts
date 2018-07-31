@@ -9,7 +9,8 @@ import { NgForm } from '@angular/forms';
   selector: 'app-template',
   templateUrl: './template.component.html',
   styles: [`
-    /*.ng-invalid.ng-touched:not(form) {
+    /* Ahora se hace con clases de bootstrap
+    .ng-invalid.ng-touched:not(form) {
       border: 1px solid red;
     }*/
 
@@ -21,8 +22,22 @@ export class TemplateComponent {
   usuario: Object = {
     nombre: null,
     apellido: null,
-    email: null
+    email: null,
+    pais: '',
+    sexo: 'Sin definir',
+    acepta: false
   };
+
+  paises = [{
+    codigo: 'CRI',
+    nombre: 'Costa Rica'
+  },
+  {
+    codigo: 'ESP',
+    nombre: 'España'
+  }];
+
+  sexos: String[] = ['Mujer', 'Hombre', 'Sin definir'];
 
   constructor() { }
 
