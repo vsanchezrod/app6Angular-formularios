@@ -8,9 +8,19 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
-                <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="5" [(ngModel)]="usuario.nombre" required>
+                <input #nombre="ngModel" class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="5" [(ngModel)]="usuario.nombre" required>
+
+                <!--Es necesario ver por qué error está fallanado, si es por required o por los 5 caracteres-->
+                <div *ngIf="nombre.errors?.required">
+                    Este campo es requerido.
+                </div>
+
+                <div *ngIf="nombre.errors?.minlength">
+                    Se necesitan al menos {{ nombre.errors?.minlength.requiredLength }} caracteres.
+                </div>
             </div>
         </div>
+
 
         <div class="form-group row">
             <label class="col-2 col-form-label">Apellido</label>
@@ -24,7 +34,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
-            <input class="form-control" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="usuario.email" required>
+            <input class="form-control" type="email" placeholder="Correo electrónico" name="email" [(ngModel)]="usuario.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
         </div>
     </div>
 
