@@ -2,41 +2,45 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
-    <div>
+    <div formGroupName="nombreCompleto">
 
-        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('nombre').valid }">
+        <!-- [ngClass]="{ 'has-danger': !forma.get('nombre').valid}"-->
+        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('nombreCompleto.nombre').valid}">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
                 <!-- El valor de formControlName tiene que ser igual a las propiedades contenidas en "forma"-->
                 <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
 
                 <!--Es necesario ver por qué error está fallanado, si es por required o por nº caracteres para mandar un mensaje-->
-                <div *ngIf="forma.controls['nombre'].errors?.required" class="form-control-feedback">
+                <div *ngIf="forma.get('nombreCompleto.nombre').errors?.required" class="form-control-feedback">
                     Campo requerido.
                 </div>
 
-                <div *ngIf="forma.controls['nombre'].errors?.minlength" class="form-control-feedback">
+                <div *ngIf="forma.get('nombreCompleto.nombre').errors?.minlength" class="form-control-feedback">
                     Caracteres mínimos 5.
                 </div>
 
             </div>
         </div>
 
-        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('apellido').valid }">
+
+        <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('nombreCompleto.apellido').valid}">
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
                 <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
 
-                <div *ngIf="forma.controls['apellido'].errors?.required" class="form-control-feedback">
+                <div *ngIf="forma.get('nombreCompleto.apellido').errors?.required" class="form-control-feedback">
                     Campo requerido.
                 </div>
 
             </div>
         </div>
 
+
     </div>
 
-    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('email').valid }">
+
+    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('email').valid}">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
             <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="email">
@@ -57,13 +61,12 @@
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <button type="submit" class="btn btn-outline-primary">
-        Guardar
-      </button>
+                Guardar
+            </button>
         </div>
     </div>
 
     <!-- Comprobación de la validez del formulario-->
     {{ forma.valid }}
-
 
 </form>
