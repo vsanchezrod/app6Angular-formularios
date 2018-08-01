@@ -55,6 +55,40 @@
         </div>
     </div>
 
+    <!-- Pasatiempos-->
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Pasatiempos</label>
+
+        <!-- Se utiliza formArrayName de forma global para identificar el array de pasatiempos-->
+        <div class="col-md-8" formArrayName="pasatiempos">
+
+            <!-- Con el formControlName="0" se hace referencia al primer elemento del array-->
+            <input *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index" type="text" class="form-control" [formControlName]="i">
+        </div>
+
+        <!-- Botón para añadir nuevos pasatiempos-->
+        <button type="button" class="btn btn-primary" (click)="agregarPasatiempo()">Nuevo</button>
+
+    </div>
+
+    <!-- PASSWORD 1-->
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Password</label>
+        <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="Password" formControlName="password1">
+
+        </div>
+    </div>
+
+
+    <!-- PASSWORD 2-->
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Repetir Password</label>
+        <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="Repite Password" formControlName="password2">
+
+        </div>
+    </div>
 
 
     <div class="form-group row">
