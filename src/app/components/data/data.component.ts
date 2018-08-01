@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 // Importaciones básicas para trabajar con la aproximación por data
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { resolve } from 'dns';
-
 
 
 @Component({
@@ -52,6 +50,21 @@ export class DataComponent {
     // Validación del password
     // Cuando se ejecutar la función, está en otro contexto y el this no existe x eso es necesario usar el bind para decirle q será this
     this.forma.controls['password2'].setValidators([Validators.required, this.validarPassword.bind(this.forma)]);
+
+    // Se crea un observador que esté pendiente de cualquier cambio en el formulario
+    /*this.forma.valueChanges.subscribe( data => {
+      console.log(data);
+    });*/
+
+    // Se puede crear un observador que sólo esté pendiente de un sólo control
+    this.forma.controls['username'].valueChanges.subscribe( data => {
+      console.log(data);
+    });
+
+    // Podemos subscribirnos para ver el estado del control
+    this.forma.controls['username'].statusChanges.subscribe( data => {
+      console.log(data);
+    });
 
   }
 
@@ -134,9 +147,9 @@ export class DataComponent {
       }, 3000);
     }
   );
-  
-  return promesa;
 
+  return promesa;
+ }
 
 }
 
