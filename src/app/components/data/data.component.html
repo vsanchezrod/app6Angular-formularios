@@ -71,6 +71,15 @@
 
     </div>
 
+    <!-- USERNAME-->
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Username</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="Usuarios" formControlName="username">
+
+        </div>
+    </div>
+
     <!-- PASSWORD 1-->
     <div class="form-group row">
         <label class="col-2 col-form-label">Password</label>
@@ -102,5 +111,6 @@
 
     <!-- Comprobación de la validez del formulario-->
     {{ forma.valid }}
+    <br> {{ forma.status }}
 
 </form>
